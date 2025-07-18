@@ -31,23 +31,23 @@ export function VegetableCard({ vegetable }: VegetableCardProps) {
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
         />
       </div>
-      <CardContent className="p-4">
-        <div className="space-y-2">
-          <h3 className="font-semibold text-lg text-foreground">{vegetable.name}</h3>
-          <p className="text-sm text-muted-foreground">{vegetable.description}</p>
-          <div className="flex items-center justify-between">
+      <CardContent className="p-3">
+        <div className="space-y-1.5">
+          <h3 className="font-semibold text-base text-foreground">{vegetable.name}</h3>
+          <p className="text-xs text-muted-foreground line-clamp-2">{vegetable.description}</p>
+          <div className="flex items-center justify-between pt-1">
             <div className="flex flex-col">
-              <span className="text-2xl font-bold text-primary">₹{vegetable.price}</span>
-              <span className="text-sm text-muted-foreground">{vegetable.unit}</span>
+              <span className="text-lg font-bold text-primary">₹{vegetable.price}</span>
+              <span className="text-xs text-muted-foreground">{vegetable.unit}</span>
             </div>
             <Button
               variant="cart"
               size="sm"
               onClick={handleAddToCart}
-              className="ml-auto"
+              className="ml-auto text-xs px-2 py-1 h-7"
             >
-              <Plus className="h-4 w-4" />
-              Add to Cart
+              <Plus className="h-3 w-3 mr-1" />
+              Add
             </Button>
           </div>
         </div>

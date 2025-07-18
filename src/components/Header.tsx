@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ShoppingCart, User, Shield } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { LoginModal } from '@/components/LoginModal';
 
 export function Header() {
   const { itemCount, toggleCart } = useCart();
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -41,7 +43,7 @@ export function Header() {
               </Button>
             </div>
           ) : (
-            <Button variant="ghost" size="sm">
+            <Button variant="ghost" size="sm" onClick={() => setIsLoginModalOpen(true)}>
               <User className="h-4 w-4 mr-2" />
               Account
             </Button>
@@ -65,6 +67,12 @@ export function Header() {
           </Button>
         </div>
       </div>
+      
+      <LoginModal 
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+        onSuccess={() => setIsLoginModalOpen(false)}
+      />
     </header>
   );
 }
